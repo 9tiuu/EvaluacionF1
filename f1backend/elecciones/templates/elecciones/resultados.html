@@ -1,0 +1,11 @@
+{% extends 'elecciones/home.html' %}
+
+{% block content %}
+    <div class="container">
+        {% if ganador %}
+        <h3>El ganador es {{ganador.nombre}} {{ganador.apellido}} con un total de {{ganador.votos}} votos</h3>
+        {% else %}
+        <h3>No hay candidatos ganadores</h3>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'elecciones/home.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Votos</h1>
+    {% if candidatos %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombe completo</th>
+                <th>Votar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in candidatos %}
+            <tr>
+                <td>{{c.nombre}} {{c.apellido}}</td>
+                <td class="d-flex gap-2">
+                    <form action="{% url 'registro' %}" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="nombre" value="{{c.nombre}}" hidden>
+                        <input type="text" name="apellido" value="{{c.apellido}}" hidden>
+                        <button type="submit" class="btn btn-primary">+ Voto</button>
+                    </form>
+
+                    <a href="{% url 'actualizar' c.nombre c.apellido %}" class="btn btn-dark">Actualizar</a>
+
+                    <a href="{% url 'eliminar' c.nombre c.apellido %}" class="btn btn-danger">Eliminar</a>
+
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h3>No hay candidatos a votar</h3>
+    {% endif %}
+</div>
+{% endblock %}

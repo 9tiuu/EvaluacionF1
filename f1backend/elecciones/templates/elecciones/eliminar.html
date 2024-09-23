@@ -1,0 +1,15 @@
+{% extends 'elecciones/home.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>¿Eliminar candidato?</h1>
+    <form action="{% url 'confirm_eliminar' %}" method="post">
+        {% csrf_token %}
+        <div class="col-3">
+            <input class="form-control mt-2" type="text" value="{{candidato.nombre}}" name="nombre" hidden>
+            <input class="form-control mt-2" type="text" value="{{candidato.apellido}}" name="apellido" hidden>
+            <button type="submit" class="btn btn-success mt-2">Eliminar</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

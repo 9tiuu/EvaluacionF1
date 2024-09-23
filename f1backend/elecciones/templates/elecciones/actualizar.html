@@ -1,0 +1,15 @@
+{% extends 'elecciones/home.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Actualizar candidato</h1>
+    <form action="{% url 'confirm_actualizar' %}" method="post">
+        {% csrf_token %}
+        <div class="col-3">
+            <input class="form-control mt-2" type="text" value="{{candidato.nombre}}" name="nombre">
+            <input class="form-control mt-2" type="text" value="{{candidato.apellido}}" name="apellido">
+            <button class="btn btn-success mt-2">Actualizar</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
